@@ -1,0 +1,4 @@
+CREATE VIEW OverdueProjects AS
+SELECT p.project_id, p.project_name, p.requirements, p.deadline, DaysOverdue(p.project_id) AS days_overdue
+FROM Projects p
+WHERE p.deadline < CURDATE();
