@@ -1,0 +1,4 @@
+-- Q9
+SELECT * FROM Projects WHERE deadline < '2024-12-01'
+UNION
+SELECT * FROM Projects WHERE project_name LIKE '%Management%';
