@@ -1,0 +1,5 @@
+CREATE VIEW ProjectsNovember2024 AS
+SELECT p.project_name, c.contact_name, c.contact_email
+FROM Projects p
+JOIN Clients c ON p.project_id = c.client_id
+WHERE p.deadline BETWEEN '2024-11-01' AND '2024-11-30';
