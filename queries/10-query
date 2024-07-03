@@ -1,0 +1,6 @@
+-- Q10
+SELECT project_name, 
+CASE 
+    WHEN deadline < CURDATE() THEN 'Overdue'
+    ELSE 'On Time'
+END AS status
