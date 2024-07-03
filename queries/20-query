@@ -1,0 +1,9 @@
+DELIMITER $$
+CREATE TRIGGER ProjectUpdateAudit
+AFTER UPDATE ON Projects
+FOR EACH ROW
+BEGIN
+    INSERT INTO ProjectAudit (project_id, old_deadline, new_deadline)
+    VALUES (OLD.project_id, OLD.deadline, NEW.deadline);
+END$$
+DELIMITER ;
