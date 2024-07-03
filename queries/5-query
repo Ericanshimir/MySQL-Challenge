@@ -1,4 +1,4 @@
--- Q6
+-- Q5
 SELECT COUNT(*) 
 FROM Projects p
 JOIN Team_Members tm ON p.project_id = tm.project_id
