@@ -1,0 +1,5 @@
+CREATE VIEW ProjectDetailsWithTeamMembers AS
+SELECT p.project_id, p.project_name, p.requirements, p.deadline, COUNT(tm.employee_id) AS total_team_members
+FROM Projects p
+LEFT JOIN Team_Members tm ON p.project_id = tm.project_id
+GROUP BY p.project_id;
