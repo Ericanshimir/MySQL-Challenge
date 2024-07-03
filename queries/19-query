@@ -1,0 +1,7 @@
+CREATE PROCEDURE ArchiveCompletedProjects ()
+BEGIN
+    CREATE TABLE IF NOT EXISTS Archived_Projects LIKE Projects;
+    INSERT INTO Archived_Projects
+    SELECT * FROM Projects WHERE deadline < CURDATE();
+    DELETE FROM Projects WHERE deadline < CURDATE();
+END
