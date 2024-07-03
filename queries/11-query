@@ -1,0 +1,4 @@
+-- Q11
+CREATE VIEW ClientContacts AS
+SELECT client_name, contact_name, contact_email 
+FROM Clients;
