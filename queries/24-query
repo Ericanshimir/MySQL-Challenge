@@ -1,0 +1,21 @@
+CREATE PROCEDURE UpdateProjectTeam(proj_id INT, new_team_members TEXT)
+BEGIN
+    DECLARE cur_employee_id INT;
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE team_cursor CURSOR FOR SELECT employee_id FROM Employees WHERE FIND_IN_SET(employee_name, new_team_members);
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    -- Remove existing team members
+    DELETE FROM Team_Members WHERE project_id = proj_id;
+
+    -- Add new team members
+    OPEN team_cursor;
+    read_loop: LOOP
+        FETCH team_cursor INTO cur_employee_id;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+        INSERT INTO Team_Members (project_id, employee_id) VALUES (proj_id, cur_employee_id);
+    END LOOP;
+    CLOSE team_cursor;
+END;
