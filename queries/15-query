@@ -1,0 +1,5 @@
+CREATE VIEW EmployeeProjectCount AS
+SELECT e.employee_name, COUNT(tm.project_id) AS project_count
+FROM Employees e
+JOIN Team_Members tm ON e.employee_id = tm.employee_id
+GROUP BY e.employee_name;
