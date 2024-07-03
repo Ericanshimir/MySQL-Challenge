@@ -1,0 +1,12 @@
+DELIMITER $$
+CREATE TRIGGER PreventProjectDeletion
+BEFORE DELETE ON Projects
+FOR EACH ROW
+BEGIN
+    DECLARE member_count INT;
+    SELECT COUNT(*) INTO member_count FROM Team_Members WHERE project_id = OLD.project_id;
+    IF member_count > 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete project with assigned team members.';
+    END IF;
+END$$
+DELIMITER ;
