@@ -1,0 +1,5 @@
+-- Q7
+SELECT DISTINCT c.client_name 
+FROM Clients c
+JOIN Projects p ON c.client_id = p.project_id
+WHERE p.deadline > '2024-10-31';
