@@ -1,0 +1,6 @@
+-- Q3
+SELECT e.employee_name 
+FROM Project_Teams pt
+JOIN Employees e ON pt.employee_id = e.employee_id
+JOIN Projects p ON pt.project_id = p.project_id
+WHERE p.project_name = 'Mobile App for Learning' AND pt.team_lead = TRUE;
