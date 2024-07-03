@@ -1,0 +1,16 @@
+CREATE PROCEDURE AddClientWithProject (
+    IN client_name VARCHAR(100),
+    IN contact_name VARCHAR(100),
+    IN contact_email VARCHAR(100),
+    IN project_name VARCHAR(100),
+    IN requirements TEXT,
+    IN deadline DATE
+)
+BEGIN
+    DECLARE new_client_id INT;
+    INSERT INTO Clients (client_name, contact_name, contact_email) 
+    VALUES (client_name, contact_name, contact_email);
+    SET new_client_id = LAST_INSERT_ID();
+    INSERT INTO Projects (project_name, requirements, deadline, client_id) 
+    VALUES (project_name, requirements, deadline, new_client_id);
+END
