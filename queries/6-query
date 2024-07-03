@@ -1,0 +1,5 @@
+-- Q6
+SELECT p.project_name, COUNT(tm.employee_id) AS total_employees
+FROM Projects p
+JOIN Team_Members tm ON p.project_id = tm.project_id
+GROUP BY p.project_name;
