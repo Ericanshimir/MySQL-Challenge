@@ -1,0 +1,5 @@
+-- Q8
+SELECT e.employee_name 
+FROM Employees e
+LEFT JOIN Project_Teams pt ON e.employee_id = pt.employee_id AND pt.team_lead = TRUE
+WHERE pt.employee_id IS NULL;
