@@ -1,0 +1,10 @@
+CREATE FUNCTION DaysUntilDeadline(proj_id INT) RETURNS INT
+    DETERMINISTIC
+    READS SQL DATA
+BEGIN
+    DECLARE days_remaining INT;
+    SELECT DATEDIFF(deadline, CURDATE()) INTO days_remaining
+    FROM Projects
+    WHERE project_id = proj_id;
+    RETURN days_remaining;
+END
